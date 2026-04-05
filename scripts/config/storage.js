@@ -209,3 +209,7 @@ if (!localStorage.getItem("users")) {
 if (!localStorage.getItem("tickets")) {
   localStorage.setItem("tickets", JSON.stringify(sampleTickets));
 }
+
+export const users = JSON.parse(localStorage.getItem("users"));
+export const movies = JSON.parse(localStorage.getItem("movies"));
+export const tickets = JSON.parse(localStorage.getItem("tickets"));
