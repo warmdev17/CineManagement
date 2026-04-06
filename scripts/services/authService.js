@@ -31,3 +31,30 @@ export const login = ({ email, password }) => {
     user,
   };
 };
+
+export const register = ({ fullname, email, password, confirmPassword }) => {
+  const user = userRepository.findUserByEmail(email);
+
+  if (user) {
+    return {
+      success: false,
+      field: "register",
+      message: "Email đã được đăng ký",
+    };
+  }
+
+  if (password === confirmPassword) {
+    return {
+      success: true,
+      regUser: {
+        id: userRepository.nextUserId(),
+        fullname,
+        email,
+        password,
+        role: "user",
+        createdAt: new Date().toISOString(),
+        isActive: 1,
+      },
+    };
+  }
+};
