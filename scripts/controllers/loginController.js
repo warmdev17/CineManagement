@@ -1,5 +1,7 @@
 import * as authService from "../services/authService.js";
 import { validateEmail, validatePassword } from "../utils/validators.js";
+import { clearError, showError, attachClearError } from "../ui/formError.js";
+import { login } from "../services/authService.js";
 
 export const handleLogin = (e) => {
   e.preventDefault();
@@ -41,7 +43,7 @@ export const handleLogin = (e) => {
         message: "Chào mừng bạn quay trở lại",
       }),
     );
-    window.location.href = "../../pages/admin.html";
+    window.location.href = "../pages/admin.html";
   }
 
   if (result.user.role === "user") {
@@ -54,6 +56,6 @@ export const handleLogin = (e) => {
         message: "Chào mừng bạn quay trở lại",
       }),
     );
-    window.location.href = "../../index.html";
+    window.location.href = "../index.html";
   }
 };
