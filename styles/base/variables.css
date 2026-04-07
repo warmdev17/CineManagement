@@ -19,6 +19,15 @@
   --border-input: #333333;
   --border-checkbox: #555555;
 
+  /* Home page specific colors */
+  --home-text-main: #f1f5f9;
+  --home-text-muted: #94a3b8;
+  --home-bg-page: #0b101a;
+  --home-bg-card: #1f2937;
+  --home-bg-input: #1a2333;
+  --home-border-card: #1f293d;
+  --home-border-input: #2d3b54;
+
   --bg-gradient-login: radial-gradient(
     circle at center,
     rgba(60, 20, 20, 0.4) 0%,
