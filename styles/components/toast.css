@@ -9,12 +9,17 @@
 }
 
 .toast {
+  font-family: "Inter", sans-serif;
   min-width: 300px;
   padding: 16px 20px;
   border-radius: 10px;
   color: white;
   background: #2f3a4a;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+  transform: translateX(120%);
+  opacity: 0;
+  transition: all 0.4s ease;
 }
 
 .toast.success {
@@ -23,4 +28,15 @@
 
 .toast.error {
   border-left: 5px solid #ef4444;
+}
+
+.toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* slide out */
+.toast.hide {
+  transform: translateX(120%);
+  opacity: 0;
 }
