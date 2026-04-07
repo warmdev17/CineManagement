@@ -9,11 +9,20 @@ export const showToast = (type, title, message) => {
   toast.innerHTML = `
     <strong>${title}</strong>
     <p>${message}</p>
-`;
+  `;
 
   container.appendChild(toast);
 
+  requestAnimationFrame(() => {
+    toast.classList.add("show");
+  });
+
   setTimeout(() => {
-    toast.remove();
+    toast.classList.remove("show");
+    toast.classList.add("hide");
+
+    setTimeout(() => {
+      toast.remove();
+    }, 400);
   }, 3000);
 };
