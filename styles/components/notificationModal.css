@@ -1,8 +1,9 @@
+/* Floating Notification Modal - Unified styling for all pages */
+
 #noti-modal {
   position: fixed;
   inset: 0;
-  border: 1px solid red;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 10000;
   width: 100%;
   height: 100%;
@@ -20,14 +21,15 @@
 }
 
 .noti-content {
-  background: var(--home-bg-card);
-  padding: 20px;
+  background: var(--noti-bg, var(--home-bg-card, var(--bg-card)));
+  border: 1px solid var(--noti-border, var(--home-border-card, var(--border-card)));
+  padding: 24px;
   border-radius: 12px;
   width: 420px;
-
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
 .noti-title {
@@ -35,15 +37,37 @@
   justify-content: space-between;
   align-items: center;
   font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--noti-text-main, var(--home-text-main, var(--text-main)));
+}
+
+.noti-title span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.noti-title i:first-child {
+  color: var(--noti-primary, var(--primary-red));
+}
+
+.noti-title .fa-xmark {
+  cursor: pointer;
+  color: var(--noti-text-muted, var(--home-text-muted, var(--text-muted)));
+  transition: color 0.2s;
+}
+
+.noti-title .fa-xmark:hover {
+  color: var(--noti-text-main, var(--home-text-main, var(--text-main)));
 }
 
 .noti-message {
-  font-size: 14px;
-  color: var(--home-text-main);
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
+  font-size: 0.9375rem;
+  color: var(--noti-text-muted, var(--home-text-muted, var(--text-muted)));
+  border-top: 1px solid var(--noti-border, var(--home-border-card, var(--border-card)));
+  border-bottom: 1px solid var(--noti-border, var(--home-border-card, var(--border-card)));
   padding: 20px 0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 #noti-modal.hide {
@@ -53,26 +77,33 @@
 .noti-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 12px;
 }
 
-.btn {
-  color: var(--home-text-main);
+.noti-actions .btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
 }
 
-.btn.cancel {
-  background: var(--white);
-  color: var(--black);
+.noti-actions .btn.cancel {
+  background: transparent;
+  color: var(--noti-text-main, var(--home-text-main, var(--text-main)));
+  border: 1px solid var(--noti-border, var(--home-border-card, var(--border-card)));
 }
 
-.btn.cancel:hover {
-  background: var(--home-text-main);
+.noti-actions .btn.cancel:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
-.btn.confirm {
-  background: var(--primary-red);
+.noti-actions .btn.confirm {
+  background: var(--noti-primary, var(--primary-red));
+  color: white;
 }
 
-.btn.confirm:hover {
+.noti-actions .btn.confirm:hover {
   background: var(--primary-red-hover);
 }
