@@ -1,0 +1,160 @@
+/* Common Admin Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background-color: var(--admin-bg-panel);
+  border: 1px solid var(--admin-border-color);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-container.size-sm {
+  max-width: 480px;
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0);
+}
+
+.modal-header {
+  padding: 24px;
+  border-bottom: 1px solid var(--admin-border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--admin-text-main);
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: var(--admin-text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.btn-close:hover {
+  color: var(--admin-text-main);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  /* Custom scrollbar for modal body */
+  scrollbar-width: thin;
+  scrollbar-color: var(--admin-border-color) transparent;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background-color: var(--admin-border-color);
+  border-radius: 10px;
+}
+
+.modal-footer {
+  padding: 24px;
+  border-top: 1px solid var(--admin-border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.btn-modal {
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.875rem;
+}
+
+.btn-modal-cancel {
+  background-color: transparent;
+  color: var(--admin-text-main);
+  border: 1px solid var(--admin-border-color);
+}
+
+.btn-modal-cancel:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--admin-text-muted);
+}
+
+.btn-modal-primary {
+  background-color: var(--admin-primary-red);
+  color: white;
+  border: none;
+}
+
+.btn-modal-primary:hover {
+  background-color: var(--primary-red-hover);
+}
+
+/* Delete confirmation modal specific */
+.modal-confirm-icon {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.modal-confirm-icon i {
+  font-size: 3rem;
+  color: var(--tag-text-danger);
+}
+
+.modal-confirm-text {
+  text-align: center;
+  color: var(--admin-text-muted);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.modal-confirm-text strong {
+  color: var(--admin-text-main);
+}

@@ -1,0 +1,202 @@
+/* Common Admin Table Styles */
+.admin-panel {
+  background-color: var(--admin-bg-panel);
+  border: 1px solid var(--admin-border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.admin-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--admin-border-color);
+}
+
+.admin-table th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--admin-text-muted);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.admin-table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.admin-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table td {
+  font-size: 0.875rem;
+  vertical-align: middle;
+}
+
+/* Common Cell Components */
+.cell-movie-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cell-movie-poster {
+  width: 48px;
+  height: 64px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.cell-movie-details h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.cell-movie-details p {
+  font-size: 0.75rem;
+  color: var(--admin-text-muted);
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.tag-outline {
+  border: 1px solid var(--admin-border-color);
+  background-color: transparent;
+  color: var(--admin-text-muted);
+}
+
+.tag-success {
+  background-color: var(--tag-bg-success);
+  color: var(--tag-text-success);
+  border: 1px solid var(--tag-text-success);
+}
+
+.tag-warning {
+  background-color: var(--tag-bg-warning);
+  color: var(--tag-text-warning);
+  border: 1px solid var(--tag-text-warning);
+}
+
+.tag-default {
+  background-color: var(--tag-bg-default);
+  color: var(--tag-text-default);
+  border: 1px solid var(--tag-text-default);
+}
+
+.tag-danger {
+  background-color: var(--tag-bg-danger);
+  color: var(--tag-text-danger);
+  border: 1px solid var(--tag-text-danger);
+}
+
+/* Stack multiple tags */
+.tag-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--admin-text-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon:hover {
+  color: var(--admin-text-main);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-icon.delete:hover {
+  color: var(--tag-text-danger);
+  background-color: var(--tag-bg-danger);
+}
+
+.admin-panel-footer {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--admin-border-color);
+}
+
+.pagination-info {
+  font-size: 0.875rem;
+  color: var(--admin-text-muted);
+}
+
+.pagination-info strong {
+  color: var(--admin-text-main);
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.page-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid var(--admin-border-color);
+  color: var(--admin-text-muted);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.page-btn:hover:not(:disabled) {
+  border-color: var(--admin-text-main);
+  color: var(--admin-text-main);
+}
+
+.page-btn.active {
+  border-color: var(--admin-primary-red);
+  color: var(--admin-primary-red);
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
