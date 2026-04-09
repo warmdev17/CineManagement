@@ -43,7 +43,7 @@ export const handleLogin = (e) => {
         message: "Chào mừng bạn quay trở lại",
       }),
     );
-    window.location.href = "../pages/admin.html";
+    window.location.href = "../pages/admin-movies.html";
   }
 
   if (result.user.role === "user") {
