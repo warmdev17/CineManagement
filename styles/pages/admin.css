@@ -1,0 +1,51 @@
+/* Admin Page Styles */
+@import url("../index.css");
+@import url("../components/form.css");
+@import url("../components/table.css");
+@import url("../components/modal.css");
+@import url("../components/notificationModal.css");
+@import url("../layouts/admin.css");
+
+/* Body styles for admin pages */
+body {
+  background-color: var(--admin-bg-page);
+  color: var(--admin-text-main);
+  min-height: 100vh;
+  display: flex;
+}
+
+/* Override notification modal variables for admin */
+#noti-modal .noti-content {
+  background: var(--admin-bg-panel);
+  border-color: var(--admin-border-color);
+}
+
+#noti-modal .noti-title {
+  color: var(--admin-text-main);
+}
+
+#noti-modal .noti-title i:first-child {
+  color: var(--admin-primary-red);
+}
+
+#noti-modal .noti-title .fa-xmark {
+  color: var(--admin-text-muted);
+}
+
+#noti-modal .noti-title .fa-xmark:hover {
+  color: var(--admin-text-main);
+}
+
+#noti-modal .noti-message {
+  color: var(--admin-text-muted);
+  border-color: var(--admin-border-color);
+}
+
+#noti-modal .btn.cancel {
+  color: var(--admin-text-main);
+  border-color: var(--admin-border-color);
+}
+
+#noti-modal .btn.confirm {
+  background: var(--admin-primary-red);
+}
