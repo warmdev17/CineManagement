@@ -16,6 +16,10 @@ const currentUser = getCurrentUser();
 
 if (currentUser) {
   btnHeader.textContent = "Đăng xuất";
-
   btnHeader.onclick = handleLogout;
+} else {
+  btnHeader.textContent = "Đăng nhập / Đăng ký";
+  btnHeader.onclick = () => {
+    window.location.href = "./pages/login.html";
+  };
 }
