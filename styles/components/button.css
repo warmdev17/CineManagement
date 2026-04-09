@@ -58,3 +58,24 @@
   background-color: var(--primary-red);
   color: var(--white);
 }
+
+/* Admin action buttons */
+.btn-add-movie,
+.btn-book-ticket {
+  background-color: var(--admin-primary-red, var(--primary-red));
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.btn-add-movie:hover,
+.btn-book-ticket:hover {
+  background-color: var(--primary-red-hover);
+}
