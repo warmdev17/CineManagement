@@ -1,13 +1,321 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
-    <link href="css/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <link rel="stylesheet" href="./styles/components/toast.css" />
+    <link rel="stylesheet" href="./styles/components/notificationModal.css" />
+    <link rel="stylesheet" href="./styles/pages/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <title>Rikkei Cinema - Đặt vé xem phim trực tuyến</title>
   </head>
+
   <body>
-    <a href="pages/login.html">login</a>
-    <a href="pages/register.html">register</a>
+    <!-- Header -->
+    <header class="header" id="header">
+      <div class="header-container">
+        <div class="logo">
+          <i class="fa-solid fa-clapperboard"></i>
+          <a href="index.html" class="logo-text">Rikkei <span>Cinema</span></a>
+        </div>
+
+        <nav class="navbar">
+          <a href="#home" class="nav-link active">Trang chủ</a>
+          <a href="#now-showing" class="nav-link">Phim</a>
+          <a href="#special-offers" class="nav-link">Rạp chiếu</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="btn btn-primary btn-header"></button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero" id="home">
+        <div class="hero-background"></div>
+        <div class="container hero-container">
+          <div class="hero-content">
+            <span class="hero-badge"
+              ><span class="dot"></span> Đang Thịnh Hành</span
+            >
+            <h1 class="hero-title" id="hero-title">Dune: Hành Tinh<br />Cát</h1>
+            <p class="hero-description" id="hero-description">
+              Câu chuyện về cuộc hành trình của Paul Atreides, một chàng<br />trai
+              trẻ tài năng và rực rỡ, sinh ra với số phận vĩ đại vượt quá<br />sự
+              hiểu biết của mình.
+            </p>
+            <div class="hero-buttons">
+              <button class="btn btn-primary" id="btn-book-ticket">
+                <i class="fa-solid fa-ticket"></i>
+                Đặt Vé Ngay
+              </button>
+              <button class="btn btn-secondary" id="btn-watch-trailer">
+                <i class="fa-regular fa-circle-play"></i>
+                Xem Trailer
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Now Showing Section -->
+      <section class="now-showing" id="now-showing">
+        <div class="container">
+          <div class="section-header space-between">
+            <h2 class="section-title">Phim Đang Chiếu</h2>
+            <a href="#now-showing" class="link-view-all"
+              >Xem tất cả <i class="fa-solid fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div class="movies-grid" id="movies-grid">
+            <!-- Movie 1 -->
+            <div class="movie-card">
+              <div class="movie-poster">
+                <img
+                  src="https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg"
+                  alt="Dune"
+                />
+              </div>
+              <div class="movie-info">
+                <h3 class="movie-title">Dune</h3>
+                <div class="movie-meta">
+                  <span><i class="fa-regular fa-clock"></i> 155 phút</span>
+                  <span class="movie-dot">&bull;</span>
+                  <span class="movie-genre">Hành động, Viễn tưởng</span>
+                </div>
+                <button class="btn btn-book">Mua Vé</button>
+              </div>
+            </div>
+
+            <!-- Movie 2 -->
+            <div class="movie-card">
+              <div class="movie-poster">
+                <img
+                  src="https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg"
+                  alt="The Batman"
+                />
+              </div>
+              <div class="movie-info">
+                <h3 class="movie-title">The Batman</h3>
+                <div class="movie-meta">
+                  <span><i class="fa-regular fa-clock"></i> 176 phút</span>
+                  <span class="movie-dot">&bull;</span>
+                  <span class="movie-genre">Hành động, Tội phạm</span>
+                </div>
+                <button class="btn btn-book">Mua Vé</button>
+              </div>
+            </div>
+
+            <!-- Movie 3 -->
+            <div class="movie-card">
+              <div class="movie-poster">
+                <img
+                  src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
+                  alt="Spider-Man"
+                />
+              </div>
+              <div class="movie-info">
+                <h3 class="movie-title">Spider-Man: No Way Home</h3>
+                <div class="movie-meta">
+                  <span><i class="fa-regular fa-clock"></i> 148 phút</span>
+                  <span class="movie-dot">&bull;</span>
+                  <span class="movie-genre">Hành động, Phiêu lưu</span>
+                </div>
+                <button class="btn btn-book">Mua Vé</button>
+              </div>
+            </div>
+
+            <!-- Movie 4 -->
+            <div class="movie-card">
+              <div class="movie-poster">
+                <img
+                  src="https://image.tmdb.org/t/p/w500/8c4a8kE7PizaGQQnditMmI1xbRp.jpg"
+                  alt="The Matrix"
+                />
+              </div>
+              <div class="movie-info">
+                <h3 class="movie-title">The Matrix Resurrections</h3>
+                <div class="movie-meta">
+                  <span><i class="fa-regular fa-clock"></i> 148 phút</span>
+                  <span class="movie-dot">&bull;</span>
+                  <span class="movie-genre">Hành động, Viễn tưởng</span>
+                </div>
+                <button class="btn btn-book">Mua Vé</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Special Offers Section -->
+      <section class="special-offers" id="special-offers">
+        <div class="container">
+          <div class="section-header text-center">
+            <h2 class="section-title">Ưu đãi đặc biệt</h2>
+            <p class="section-subtitle">
+              Khám phá các chương trình khuyến mãi và ưu đãi hấp dẫn dành riêng
+              cho bạn.
+            </p>
+          </div>
+
+          <div class="offers-grid">
+            <div class="offer-card">
+              <div class="offer-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <h3>Giảm 20% cho sinh viên</h3>
+              <p>
+                Áp dụng cho tất cả các suất chiếu 2D từ thứ 2 đến thứ 5 hàng
+                tuần khi mang theo thẻ sinh viên.
+              </p>
+              <a href="#" class="offer-link">Xem chi tiết</a>
+            </div>
+
+            <div class="offer-card">
+              <div class="offer-icon">
+                <i class="fa-solid fa-ticket-simple"></i>
+              </div>
+              <h3>Combo Bắp Nước Tiết Kiệm</h3>
+              <p>
+                Tiết kiệm đến 30% khi mua vé online kèm combo bắp nước Sweet
+                Combo.
+              </p>
+              <a href="#" class="offer-link">Xem chi tiết</a>
+            </div>
+
+            <div class="offer-card">
+              <div class="offer-icon">
+                <i class="fa-solid fa-tag"></i>
+              </div>
+              <h3>Thẻ Thành Viên VIP</h3>
+              <p>
+                Tích điểm đổi quà, miễn phí nâng cấp bắp nước và vé mời xem phim
+                định kỳ.
+              </p>
+              <a href="#" class="offer-link">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Us Section -->
+      <section class="why-choose-us" id="about">
+        <div class="container">
+          <div class="section-header text-center">
+            <h2 class="section-title">Tại sao chọn RikkeiEdu?</h2>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fa-solid fa-film"></i>
+              </div>
+              <h3>Trải nghiệm đỉnh cao</h3>
+              <p>
+                Hệ thống âm thanh Dolby Atmos và màn hình IMAX mang đến trải
+                nghiệm điện ảnh sống động nhất.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fa-solid fa-dollar-sign"></i>
+              </div>
+              <h3>Giá vé hợp lý</h3>
+              <p>
+                Cam kết giá vé tốt nhất cho học sinh, sinh viên và thành viên
+                thân thiết với nhiều ưu đãi.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fa-solid fa-rocket"></i>
+              </div>
+              <h3>Đặt vé nhanh chóng</h3>
+              <p>
+                Hệ thống đặt vé online tiện lợi, chọn ghế dễ dàng và thanh toán
+                an toàn chỉ trong vài bước.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter Section -->
+      <section class="newsletter" id="newsletter">
+        <div class="container">
+          <div class="newsletter-content">
+            <div class="newsletter-text">
+              <h2>Đăng ký thành viên CineEdu</h2>
+              <p>Nhận ưu đãi vé xem phim và bắp nước hàng tuần.</p>
+            </div>
+            <form class="newsletter-form" id="newsletter-form">
+              <div class="newsletter-input-group">
+                <input
+                  type="email"
+                  id="newsletter-email"
+                  placeholder="Email của bạn"
+                  required
+                />
+                <button type="submit" class="btn btn-primary">Đăng ký</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="toast-container"></div>
+    <div id="noti-modal" class="hide modal--confirm">
+      <div class="noti-content">
+        <div class="noti-title">
+          <span> <i class="fa-solid fa-circle-info"></i> </span>
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+
+        <div class="noti-message">
+          <span></span>
+        </div>
+
+        <div class="noti-actions"></div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-links-inline">
+            <a href="#">Liên hệ</a>
+            <a href="#">Điều khoản</a>
+            <a href="#">Tuyển dụng</a>
+            <a href="#">Về chúng tôi</a>
+          </div>
+          <div class="social-links">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 RikkeiEdu. Tất cả quyền được bảo mật.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="./scripts/pages/homePage.js"></script>
   </body>
 </html>
