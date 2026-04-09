@@ -1,0 +1,11 @@
+/* Admin Movies Page Styles */
+
+/* Reusable action button - extends button component */
+.btn-action {
+  padding: 10px 16px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
