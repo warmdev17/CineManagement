@@ -1,20 +1,24 @@
 :root {
+  /* Primary Colors */
   --primary-red: #e70814;
   --primary-red-hover: #d60000;
   --white: #ffffff;
   --black: #000000;
   --bg-header: #181111;
 
+  /* Text Colors */
   --text-main: #ffffff;
   --text-muted: #b0b0b0;
   --text-dark: #666666;
   --text-light-muted: #888888;
 
+  /* Background Colors */
   --bg-page-dark: #080404;
   --bg-card: #141414;
   --bg-input: #1a1a1a;
   --bg-input-focus: #222222;
 
+  /* Border Colors */
   --border-card: #2a2a2a;
   --border-input: #333333;
   --border-checkbox: #555555;
@@ -28,6 +32,14 @@
   --home-border-card: #1f293d;
   --home-border-input: #2d3b54;
 
+  /* Notification modal variables - uses fallbacks */
+  --noti-bg: var(--home-bg-card);
+  --noti-border: var(--home-border-card);
+  --noti-text-main: var(--home-text-main);
+  --noti-text-muted: var(--home-text-muted);
+  --noti-primary: var(--primary-red);
+
+  /* Gradients */
   --bg-gradient-login: radial-gradient(
     circle at center,
     rgba(60, 20, 20, 0.4) 0%,
@@ -35,4 +47,23 @@
     rgba(8, 4, 4, 1) 100%
   );
   --bg-gradient-register: #111827;
+
+  /* Admin Panel Colors */
+  --admin-bg-page: #120e0e;
+  --admin-bg-sidebar: #181111;
+  --admin-bg-panel: #201616;
+  --admin-border-color: #332626;
+  --admin-text-main: #ffffff;
+  --admin-text-muted: #a0a0a0;
+  --admin-primary-red: #ea1c24;
+
+  /* Tag colors */
+  --tag-bg-success: rgba(46, 125, 50, 0.2);
+  --tag-text-success: #4caf50;
+  --tag-bg-warning: rgba(255, 152, 0, 0.2);
+  --tag-text-warning: #ffb74d;
+  --tag-bg-default: rgba(158, 158, 158, 0.2);
+  --tag-text-default: #bdbdbd;
+  --tag-bg-danger: rgba(244, 67, 54, 0.2);
+  --tag-text-danger: #ef5350;
 }
