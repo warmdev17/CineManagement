@@ -8,7 +8,8 @@ export const setCurrentUser = (user) => {
 };
 
 export const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("currentUser"));
+  const user = localStorage.getItem("currentUser");
+  return user ? JSON.parse(user) : null;
 };
 
 export const logout = () => {
