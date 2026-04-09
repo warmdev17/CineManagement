@@ -1,3 +1,4 @@
+import { routes } from "../config/constrants.js";
 import { logout } from "../services/authService.js";
 import { showModal } from "../ui/modal.js";
 
@@ -21,7 +22,7 @@ export const handleLogout = () => {
         }),
       );
 
-      window.location.href = "./pages/login.html";
+      window.location.href = routes.login;
     },
 
     onCancel: () => {

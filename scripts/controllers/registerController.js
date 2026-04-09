@@ -1,3 +1,4 @@
+import { routes } from "../config/constrants.js";
 import { users } from "../config/storage.js";
 import {
   validateEmail,
@@ -55,7 +56,6 @@ export const handleRegister = (e) => {
     return;
   } else {
     users.push(user.regUser);
-    // console.log(users);
 
     localStorage.setItem("users", JSON.stringify(users));
 
@@ -67,6 +67,6 @@ export const handleRegister = (e) => {
         message: "Đăng nhập để tiếp tục",
       }),
     );
-    window.location.href = "./login.html";
+    window.location.href = routes.login;
   }
 };
