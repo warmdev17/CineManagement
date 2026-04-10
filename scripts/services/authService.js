@@ -1,7 +1,7 @@
 import * as userRepository from "../repositories/userRepository.js";
 
 export const isAuthenticated = () => {
-  return !!localStorage.getItem("token");
+  return !!localStorage.getItem("currentUser");
 };
 export const setCurrentUser = (user) => {
   localStorage.setItem("currentUser", JSON.stringify(user));
@@ -33,7 +33,7 @@ export const login = ({ email, password }) => {
   };
 };
 
-export const register = ({ fullname, email, password, confirmPassword }) => {
+export const register = ({ fullName, email, password, confirmPassword }) => {
   const user = userRepository.findUserByEmail(email);
 
   if (user) {
@@ -44,18 +44,24 @@ export const register = ({ fullname, email, password, confirmPassword }) => {
     };
   }
 
-  if (password === confirmPassword) {
+  if (password !== confirmPassword) {
     return {
-      success: true,
-      regUser: {
-        id: userRepository.nextUserId(),
-        fullname,
-        email,
-        password,
-        role: "user",
-        createdAt: new Date().toISOString(),
-        isActive: 1,
-      },
+      success: false,
+      field: "confirmPassword",
+      message: "Mật khẩu xác nhận không khớp",
     };
   }
+
+  return {
+    success: true,
+    regUser: {
+      id: userRepository.nextUserId(),
+      fullName,
+      email,
+      password,
+      role: "user",
+      createdAt: new Date().toISOString(),
+      isActive: true,
+    },
+  };
 };
