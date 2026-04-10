@@ -1,5 +1,7 @@
-import { routes } from "../config/constrants.js";
+import { routes } from "../config/constants.js";
 import { users } from "../config/storage.js";
+import { register } from "../services/authService.js";
+import { clearError, showError, attachClearError } from "../ui/formError.js";
 import {
   validateEmail,
   validateName,
@@ -15,24 +17,29 @@ export const handleRegister = (e) => {
   const password = e.target.password;
   const confirmPassword = e.target.confirmPassword;
 
-  [fullname, email, password, confirmPassword].forEach(clearError);
+  [fullname, email, password, confirmPassword].forEach((input) => {
+    clearError(input);
+    attachClearError(input);
+  });
+
+  let hasError = false;
 
   const fullNameErr = validateName(fullname.value);
   if (fullNameErr) {
     showError(fullname, fullNameErr.message);
-    return;
+    hasError = true;
   }
 
   const emailErr = validateEmail(email.value);
   if (emailErr) {
     showError(email, emailErr.message);
-    return;
+    hasError = true;
   }
 
   const passErr = validatePassword(password.value, true);
   if (passErr) {
     showError(password, passErr.message);
-    return;
+    hasError = true;
   }
 
   const cPassErr = validateConfirmPassword(
@@ -41,32 +48,33 @@ export const handleRegister = (e) => {
   );
   if (cPassErr) {
     showError(confirmPassword, cPassErr.message);
-    return;
+    hasError = true;
   }
 
-  const user = register({
-    fullname: fullname.value,
+  if (hasError) return;
+
+  const result = register({
+    fullName: fullname.value,
     email: email.value,
     password: password.value,
     confirmPassword: confirmPassword.value,
   });
 
-  if (!user.success) {
-    showError(email, user.message);
+  if (!result.success) {
+    showError(email, result.message);
     return;
-  } else {
-    users.push(user.regUser);
-
-    localStorage.setItem("users", JSON.stringify(users));
-
-    sessionStorage.setItem(
-      "toast",
-      JSON.stringify({
-        type: "success",
-        title: "Đăng ký thành công",
-        message: "Đăng nhập để tiếp tục",
-      }),
-    );
-    window.location.href = routes.login;
   }
+
+  users.push(result.regUser);
+  localStorage.setItem("users", JSON.stringify(users));
+
+  sessionStorage.setItem(
+    "toast",
+    JSON.stringify({
+      type: "success",
+      title: "Đăng ký thành công",
+      message: "Đăng nhập để tiếp tục",
+    }),
+  );
+  window.location.href = routes.login;
 };
