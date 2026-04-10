@@ -1,8 +1,7 @@
-import * as authService from "../services/authService.js";
+import { login, setCurrentUser } from "../services/authService.js";
 import { validateEmail, validatePassword } from "../utils/validators.js";
 import { clearError, showError, attachClearError } from "../ui/formError.js";
-import { login } from "../services/authService.js";
-import { routes } from "../config/constrants.js";
+import { routes } from "../config/constants.js";
 
 export const handleLogin = (e) => {
   e.preventDefault();
@@ -10,22 +9,26 @@ export const handleLogin = (e) => {
   const email = e.target.email;
   const password = e.target.password;
 
-  [email, password].forEach(clearError);
+  [email, password].forEach((input) => {
+    clearError(input);
+    attachClearError(input);
+  });
+
+  let hasError = false;
 
   const emailErr = validateEmail(email.value);
   if (emailErr) {
     showError(email, emailErr.message);
-    attachClearError(email);
-    return;
+    hasError = true;
   }
 
   const passwordErr = validatePassword(password.value);
   if (passwordErr) {
-    password.focus();
     showError(password, passwordErr.message);
-    attachClearError(password);
-    return;
+    hasError = true;
   }
+
+  if (hasError) return;
 
   const result = login({ email: email.value, password: password.value });
 
@@ -34,29 +37,16 @@ export const handleLogin = (e) => {
     return;
   }
 
-  if (result.user.role === "admin") {
-    authService.setCurrentUser(result.user);
-    sessionStorage.setItem(
-      "toast",
-      JSON.stringify({
-        type: "success",
-        title: "Đăng nhập thành công",
-        message: "Chào mừng bạn quay trở lại",
-      }),
-    );
-    window.location.href = routes.adminMovies;
-  }
+  setCurrentUser(result.user);
+  sessionStorage.setItem(
+    "toast",
+    JSON.stringify({
+      type: "success",
+      title: "Đăng nhập thành công",
+      message: "Chào mừng bạn quay trở lại",
+    }),
+  );
 
-  if (result.user.role === "user") {
-    authService.setCurrentUser(result.user);
-    sessionStorage.setItem(
-      "toast",
-      JSON.stringify({
-        type: "success",
-        title: "Đăng nhập thành công",
-        message: "Chào mừng bạn quay trở lại",
-      }),
-    );
-    window.location.href = routes.home;
-  }
+  window.location.href =
+    result.user.role === "admin" ? routes.adminMovies : routes.home;
 };
