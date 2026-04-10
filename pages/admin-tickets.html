@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Quản Lý Vé - Rikkei Cinema</title>
+    <link rel="stylesheet" href="../styles/pages/admin.css" />
+    <link rel="stylesheet" href="../styles/pages/admin-tickets.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Floating Notification Modal -->
+    <div id="noti-modal" class="hide modal--confirm">
+      <div class="noti-content">
+        <div class="noti-title">
+          <span><i class="fa-solid fa-circle-info"></i></span>
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="noti-message">
+          <span></span>
+        </div>
+        <div class="noti-actions"></div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="index.html"
+          ><i class="fa-solid fa-clapperboard"></i> Rikkei
+          <span>Cinema</span></a
+        >
+      </div>
+      <nav class="sidebar-nav">
+        <a href="admin-movies.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-film"></i> Quản lý phim
+        </a>
+        <a href="admin-tickets.html" class="sidebar-nav-item active">
+          <i class="fa-solid fa-ticket"></i> Quản lý vé
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="admin-profile">
+          <div class="admin-profile-info">
+            <img
+              src="https://i.pravatar.cc/150?img=11"
+              alt="Admin Avatar"
+              class="admin-avatar"
+            />
+            <div class="admin-details">
+              <h4>Admin Quản lý</h4>
+              <p>LQTuan@rikkei.edu.vn</p>
+            </div>
+          </div>
+          <button class="btn-logout" title="Đăng xuất">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Quản lý vé đã đặt</h1>
+        </div>
+        <div class="header-actions">
+          <div class="admin-search-container" style="width: 400px">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Tìm kiếm mã vé, tên khách..."
+            />
+          </div>
+          <button class="btn-notification">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notification-dot"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Summary Cards -->
+      <div class="summary-cards">
+        <div class="summary-card">
+          <h3 class="summary-card-title">Tổng vé hôm nay</h3>
+          <div class="summary-card-value">152</div>
+          <div class="summary-card-trend positive">+12% so với hôm qua</div>
+          <i class="fa-solid fa-ticket summary-card-icon"></i>
+        </div>
+        <div class="summary-card">
+          <h3 class="summary-card-title">Doanh thu ngày</h3>
+          <div class="summary-card-value">
+            12.5tr<span
+              style="
+                font-size: 1rem;
+                color: var(--admin-text-muted);
+                font-weight: 400;
+              "
+              >đ</span
+            >
+          </div>
+          <div class="summary-card-trend positive">+5% so với mục tiêu</div>
+          <i class="fa-solid fa-money-bill-wave summary-card-icon"></i>
+        </div>
+        <div class="summary-card">
+          <h3 class="summary-card-title">Vé chờ xác nhận</h3>
+          <div class="summary-card-value">5</div>
+          <div class="summary-card-trend warning">
+            <i class="fa-solid fa-triangle-exclamation"></i> Cần xử lý ngay
+          </div>
+          <i class="fa-regular fa-calendar-check summary-card-icon"></i>
+        </div>
+      </div>
+
+      <!-- Action bar -->
+      <div class="admin-actions-bar">
+        <button class="btn-book-ticket" onclick="openModal('modal-add-ticket')">
+          <i class="fa-solid fa-plus"></i> Đặt vé
+        </button>
+        <button class="btn-filter">
+          <i class="fa-solid fa-filter"></i> Lọc
+        </button>
+      </div>
+
+      <!-- Ticket Table -->
+      <div class="admin-panel">
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Mã vé</th>
+                <th>Khách hàng</th>
+                <th>Phim</th>
+                <th>Suất chiếu</th>
+                <th>Ghế</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Row 1 -->
+              <tr>
+                <td class="ticket-code">#VE-1001</td>
+                <td>
+                  <div class="ticket-customer-info">
+                    <h4>Nguyễn Văn A</h4>
+                    <p>0987.xxx.xxx</p>
+                  </div>
+                </td>
+                <td>Dune: Part Two</td>
+                <td>
+                  <div style="font-weight: 600; margin-bottom: 4px">10:00</div>
+                  <div
+                    style="font-size: 0.75rem; color: var(--admin-text-muted)"
+                  >
+                    15/10/2023
+                  </div>
+                </td>
+                <td><span class="tag tag-outline">F12, F13</span></td>
+                <td class="ticket-price">180.000đ</td>
+                <td><span class="tag tag-success">Đã Thanh Toán</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button
+                      class="btn-icon edit"
+                      onclick="openModal('modal-update-ticket')"
+                    >
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button
+                      class="btn-icon delete"
+                      onclick="openModal('modal-cancel-ticket')"
+                    >
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 2 -->
+              <tr>
+                <td class="ticket-code">#VE-1002</td>
+                <td>
+                  <div class="ticket-customer-info">
+                    <h4>Trần Thị B</h4>
+                    <p>0912.xxx.xxx</p>
+                  </div>
+                </td>
+                <td>Mai</td>
+                <td>
+                  <div style="font-weight: 600; margin-bottom: 4px">13:30</div>
+                  <div
+                    style="font-size: 0.75rem; color: var(--admin-text-muted)"
+                  >
+                    15/10/2023
+                  </div>
+                </td>
+                <td><span class="tag tag-outline">G5</span></td>
+                <td class="ticket-price">90.000đ</td>
+                <td><span class="tag tag-warning">Chờ xử lý</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button
+                      class="btn-icon edit"
+                      onclick="openModal('modal-update-ticket')"
+                    >
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button
+                      class="btn-icon delete"
+                      onclick="openModal('modal-cancel-ticket')"
+                    >
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 3 -->
+              <tr>
+                <td class="ticket-code">#VE-1003</td>
+                <td>
+                  <div class="ticket-customer-info">
+                    <h4>Lê Văn C</h4>
+                    <p>0909.xxx.xxx</p>
+                  </div>
+                </td>
+                <td>Kung Fu Panda 4</td>
+                <td>
+                  <div style="font-weight: 600; margin-bottom: 4px">19:00</div>
+                  <div
+                    style="font-size: 0.75rem; color: var(--admin-text-muted)"
+                  >
+                    15/10/2023
+                  </div>
+                </td>
+                <td><span class="tag tag-outline">H10 , H11, H12</span></td>
+                <td class="ticket-price">270.000đ</td>
+                <td><span class="tag tag-success">Đã Thanh Toán</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button
+                      class="btn-icon edit"
+                      onclick="openModal('modal-update-ticket')"
+                    >
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button
+                      class="btn-icon delete"
+                      onclick="openModal('modal-cancel-ticket')"
+                    >
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 4 -->
+              <tr>
+                <td class="ticket-code">#VE-1004</td>
+                <td>
+                  <div class="ticket-customer-info">
+                    <h4>Phạm Minh D</h4>
+                    <p>0933.xxx.xxx</p>
+                  </div>
+                </td>
+                <td>Exhuma: Quật Mộ</td>
+                <td>
+                  <div style="font-weight: 600; margin-bottom: 4px">21:45</div>
+                  <div
+                    style="font-size: 0.75rem; color: var(--admin-text-muted)"
+                  >
+                    14/10/2023
+                  </div>
+                </td>
+                <td><span class="tag tag-outline">E8</span></td>
+                <td class="ticket-price">90.000đ</td>
+                <td><span class="tag tag-danger">Đã hủy</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button
+                      class="btn-icon edit"
+                      onclick="openModal('modal-update-ticket')"
+                    >
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button
+                      class="btn-icon delete"
+                      disabled
+                      style="opacity: 0.5; cursor: not-allowed"
+                    >
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 5 -->
+              <tr>
+                <td class="ticket-code">#VE-1005</td>
+                <td>
+                  <div class="ticket-customer-info">
+                    <h4>Hoàng Yến E</h4>
+                    <p>0977.xxx.xxx</p>
+                  </div>
+                </td>
+                <td>Godzilla x Kong</td>
+                <td>
+                  <div style="font-weight: 600; margin-bottom: 4px">09:15</div>
+                  <div
+                    style="font-size: 0.75rem; color: var(--admin-text-muted)"
+                  >
+                    16/10/2023
+                  </div>
+                </td>
+                <td><span class="tag tag-outline">D4, D5</span></td>
+                <td class="ticket-price">180.000đ</td>
+                <td><span class="tag tag-warning">Chờ xử lý</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button
+                      class="btn-icon edit"
+                      onclick="openModal('modal-update-ticket')"
+                    >
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button
+                      class="btn-icon delete"
+                      onclick="openModal('modal-cancel-ticket')"
+                    >
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="admin-panel-footer">
+          <div class="pagination-info">
+            Đang xem <strong>1</strong> đến <strong>5</strong> trong số
+            <strong>152</strong> kết quả
+          </div>
+          <div class="pagination-controls">
+            <button class="page-btn" disabled>
+              <i class="fa-solid fa-angle-left"></i>
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">...</button>
+            <button class="page-btn">10</button>
+            <button class="page-btn">
+              <i class="fa-solid fa-angle-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast-container"></div>
+
+    <!-- MODALS -->
+
+    <!-- Add Ticket Modal -->
+    <div class="modal-overlay" id="modal-add-ticket">
+      <div class="modal-container size-sm">
+        <div class="modal-header">
+          <h3 class="modal-title">Thêm Mới Đặt Vé</h3>
+          <button class="btn-close" onclick="closeModal('modal-add-ticket')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label class="form-label">Chọn khách hàng</label>
+              <div class="input-with-icon">
+                <i
+                  class="fa-regular fa-user"
+                  style="left: 16px; right: auto"
+                ></i>
+                <select class="form-control" style="padding-left: 44px">
+                  <option>Tìm kiếm tên hoặc SĐT...</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Chọn phim</label>
+                <div class="input-with-icon">
+                  <i
+                    class="fa-solid fa-film"
+                    style="left: 16px; right: auto"
+                  ></i>
+                  <select class="form-control" style="padding-left: 44px">
+                    <option>Chọn phim đang chiếu...</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Chọn suất chiếu</label>
+                <div class="input-with-icon">
+                  <i
+                    class="fa-regular fa-calendar"
+                    style="left: 16px; right: auto"
+                  ></i>
+                  <select class="form-control" style="padding-left: 44px">
+                    <option>Chọn Suất</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Chọn ghế</label>
+              <div class="input-with-icon">
+                <i
+                  class="fa-solid fa-couch"
+                  style="left: 16px; right: auto"
+                ></i>
+                <input
+                  type="text"
+                  class="form-control"
+                  style="padding-left: 44px"
+                  value="F5, F6"
+                />
+              </div>
+              <p
+                style="
+                  font-size: 0.75rem;
+                  color: var(--admin-text-muted);
+                  margin-top: 6px;
+                "
+              >
+                Phân cách các ghế bằng dấu phẩy
+              </p>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Phương thức thanh toán</label>
+                <div class="input-with-icon">
+                  <i
+                    class="fa-solid fa-money-bill"
+                    style="left: 16px; right: auto"
+                  ></i>
+                  <select class="form-control" style="padding-left: 44px">
+                    <option>Tiền mặt</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Trạng thái thanh toán</label>
+                <div class="input-with-icon">
+                  <i
+                    class="fa-regular fa-circle-check"
+                    style="left: 16px; right: auto"
+                  ></i>
+                  <select class="form-control" style="padding-left: 44px">
+                    <option>Đã thanh toán</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-price-preview mt-4">
+              <div class="total-price-preview-icon">
+                <i class="fa-solid fa-receipt"></i>
+              </div>
+              <div class="total-price-preview-content">
+                <div class="total-price-preview-title">Tổng tiền dự kiến</div>
+                <div class="total-price-preview-value">240.000 đ</div>
+              </div>
+              <div class="total-price-preview-detail">
+                2 vé x 120.000 đ<br />
+                Đã bao gồm VAT
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn-modal btn-modal-cancel"
+            onclick="closeModal('modal-add-ticket')"
+          >
+            Hủy
+          </button>
+          <button class="btn-modal btn-modal-primary">
+            <i class="fa-solid fa-check"></i> Xác nhận đặt vé
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Ticket Modal -->
+    <div class="modal-overlay" id="modal-update-ticket">
+      <div class="modal-container size-sm">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">Cập Nhật Thông Tin Vé</h3>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--admin-text-muted);
+                margin-top: 4px;
+              "
+            >
+              Mã vé: #TK-88293
+            </p>
+          </div>
+          <button class="btn-close" onclick="closeModal('modal-update-ticket')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label class="form-label">Khách hàng</label>
+              <div class="input-with-icon">
+                <i
+                  class="fa-regular fa-user"
+                  style="left: 16px; right: auto"
+                ></i>
+                <input
+                  type="text"
+                  class="form-control"
+                  style="padding-left: 44px; opacity: 0.7"
+                  value="Nguyễn Văn A"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Phim</label>
+                <select class="form-control">
+                  <option>Dune: Hành Tinh Cát</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Suất chiếu</label>
+                <select class="form-control">
+                  <option>25/10/2024 - 19:30</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Vị trí ghế</label>
+                <div class="input-with-icon">
+                  <i
+                    class="fa-solid fa-couch"
+                    style="left: 16px; right: auto"
+                  ></i>
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="padding-left: 44px"
+                    value="H12, H13"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Trạng thái thanh toán</label>
+                <div class="input-with-icon">
+                  <select class="form-control" style="padding-right: 44px">
+                    <option>Đã thanh toán</option>
+                  </select>
+                  <i class="fa-solid fa-money-bill" style="right: 16px"></i>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ghi chú</label>
+              <textarea
+                class="form-control"
+                placeholder="Nhập ghi chú của admin..."
+              ></textarea>
+            </div>
+
+            <div
+              style="
+                background-color: var(--admin-bg-page);
+                border: 1px solid var(--admin-border-color);
+                border-radius: 8px;
+                padding: 16px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 16px;
+              "
+            >
+              <div style="color: var(--admin-text-main); font-size: 0.875rem">
+                Tổng số ghế: 2
+              </div>
+              <div style="text-align: right">
+                <div
+                  style="
+                    font-size: 0.75rem;
+                    color: var(--admin-text-muted);
+                    margin-bottom: 4px;
+                  "
+                >
+                  Tổng tiền thanh toán
+                </div>
+                <div
+                  style="
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: var(--tag-text-danger);
+                  "
+                >
+                  240.000đ
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn-modal btn-modal-cancel"
+            onclick="closeModal('modal-update-ticket')"
+          >
+            Hủy
+          </button>
+          <button class="btn-modal btn-modal-primary">Lưu thay đổi</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cancel Ticket Modal -->
+    <div class="modal-overlay" id="modal-cancel-ticket">
+      <div class="modal-container size-sm">
+        <div class="modal-body" style="padding: 32px 24px">
+          <div class="modal-confirm-icon">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <h3
+            class="modal-title"
+            style="text-align: center; margin-bottom: 16px"
+          >
+            Xác nhận hủy vé
+          </h3>
+          <p class="modal-confirm-text">
+            Bạn có chắc chắn muốn hủy và xóa vé mã này không?<br />
+            <span style="font-size: 0.75rem"
+              >Hành động này sẽ giải phóng ghế ngồi và không thể hoàn tác.</span
+            >
+          </p>
+          <div style="display: flex; gap: 16px; justify-content: center">
+            <button
+              class="btn-modal btn-modal-cancel"
+              onclick="closeModal('modal-cancel-ticket')"
+              style="flex: 1"
+            >
+              Đóng
+            </button>
+            <button class="btn-modal btn-modal-primary" style="flex: 1">
+              Xác nhận hủy
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="../scripts/pages/adminPage.js"></script>
+    <script>
+      window.openModal = function (id) {
+        document.getElementById(id).classList.add("active");
+      };
+      window.closeModal = function (id) {
+        document.getElementById(id).classList.remove("active");
+      };
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("modal-overlay")) {
+          event.target.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
+</html>
