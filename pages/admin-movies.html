@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Quản Lý Phim - Rikkei Cinema</title>
+    <link rel="stylesheet" href="../styles/pages/admin.css" />
+    <link rel="stylesheet" href="../styles/pages/admin-movies.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Floating Notification Modal -->
+    <div id="noti-modal" class="hide modal--confirm">
+      <div class="noti-content">
+        <div class="noti-title">
+          <span><i class="fa-solid fa-circle-info"></i></span>
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="noti-message">
+          <span></span>
+        </div>
+        <div class="noti-actions"></div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="index.html"
+          ><i class="fa-solid fa-clapperboard"></i> Rikkei
+          <span>Cinema</span></a
+        >
+      </div>
+      <nav class="sidebar-nav">
+        <a href="admin-movies.html" class="sidebar-nav-item active">
+          <i class="fa-solid fa-film"></i> Quản lý phim
+        </a>
+        <a href="admin-tickets.html" class="sidebar-nav-item">
+          <i class="fa-solid fa-ticket"></i> Quản lý vé
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="admin-profile">
+          <div class="admin-profile-info">
+            <img
+              src="https://i.pravatar.cc/150?img=11"
+              alt="Admin Avatar"
+              class="admin-avatar"
+            />
+            <div class="admin-details">
+              <h4>Admin Quản lý</h4>
+              <p>LQTuan@rikkei.edu.vn</p>
+            </div>
+          </div>
+          <button class="btn-logout" title="Đăng xuất">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Quản lý danh sách phim</h1>
+          <p class="page-description">
+            Xem, chỉnh sửa và quản lý tất cả phim hiện có trên hệ thống.
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="admin-search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Tìm tên phim..."
+            />
+          </div>
+          <button class="btn-add-movie" onclick="openModal('modal-add-movie')">
+            <i class="fa-solid fa-plus"></i> Thêm phim mới
+          </button>
+        </div>
+      </header>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-tab active">Tất cả (24)</button>
+        <button class="filter-tab">Đang chiếu (8)</button>
+        <button class="filter-tab">Sắp chiếu (5)</button>
+        <button class="filter-tab">Đã chiếu (11)</button>
+      </div>
+
+      <!-- Movie Table -->
+      <div class="admin-panel">
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Ảnh bìa</th>
+                <th>Tên phim</th>
+                <th>Thể loại</th>
+                <th>Thời lượng</th>
+                <th>Ngày khởi chiếu</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Row 1 -->
+              <tr>
+                <td>
+                  <img
+                    src="https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg"
+                    alt="Dune Cover"
+                    class="cell-movie-poster"
+                  />
+                </td>
+                <td>
+                  <div class="cell-movie-details">
+                    <h4>Dune: Part Two</h4>
+                    <p>Hành tinh cát: Phần hai</p>
+                  </div>
+                </td>
+                <td>
+                  <div class="tag-group">
+                    <span class="tag tag-outline">Hành động</span>
+                    <span class="tag tag-outline">Viễn tưởng</span>
+                  </div>
+                </td>
+                <td>166<br />phút</td>
+                <td>01/03/2024</td>
+                <td><span class="tag tag-success">Đang chiếu</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button
+                      class="btn-icon edit"
+                      onclick="openModal('modal-update-movie')"
+                    >
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button
+                      class="btn-icon delete"
+                      onclick="openModal('modal-delete-movie')"
+                    >
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 2 -->
+              <tr>
+                <td>
+                  <img
+                    src="https://image.tmdb.org/t/p/w200/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg"
+                    alt="Kung Fu Panda 4 Cover"
+                    class="cell-movie-poster"
+                  />
+                </td>
+                <td>
+                  <div class="cell-movie-details">
+                    <h4>Kung Fu Panda 4</h4>
+                    <p>Gấu trúc Kung Fu 4</p>
+                  </div>
+                </td>
+                <td>
+                  <div class="tag-group">
+                    <span class="tag tag-outline">Hoạt hình</span>
+                    <span class="tag tag-outline">Hài</span>
+                  </div>
+                </td>
+                <td>94 phút</td>
+                <td>08/03/2024</td>
+                <td><span class="tag tag-success">Đang chiếu</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button
+                      class="btn-icon edit"
+                      onclick="openModal('modal-update-movie')"
+                    >
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button
+                      class="btn-icon delete"
+                      onclick="openModal('modal-delete-movie')"
+                    >
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 3 -->
+              <tr>
+                <td>
+                  <img
+                    src="https://image.tmdb.org/t/p/w200/xXpQkO9Yq3M1c4f9j4W6LxzqzKj.jpg"
+                    alt="Godzilla x Kong"
+                    class="cell-movie-poster"
+                  />
+                </td>
+                <td>
+                  <div class="cell-movie-details">
+                    <h4>Godzilla x Kong:<br />The New Empire</h4>
+                    <p>Đế Chế Mới</p>
+                  </div>
+                </td>
+                <td>
+                  <div class="tag-group">
+                    <span class="tag tag-outline">Hành động</span>
+                    <span class="tag tag-outline">Viễn tưởng</span>
+                  </div>
+                </td>
+                <td>115 phút</td>
+                <td>29/03/2024</td>
+                <td><span class="tag tag-warning">Sắp chiếu</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button
+                      class="btn-icon edit"
+                      onclick="openModal('modal-update-movie')"
+                    >
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button
+                      class="btn-icon delete"
+                      onclick="openModal('modal-delete-movie')"
+                    >
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 4 -->
+              <tr>
+                <td>
+                  <img
+                    src="https://image.tmdb.org/t/p/w200/5OaXWw1w9NfFq6sL7y3T8XWQ5iM.jpg"
+                    alt="Mai Cover"
+                    class="cell-movie-poster"
+                  />
+                </td>
+                <td>
+                  <div class="cell-movie-details">
+                    <h4>Mai</h4>
+                    <p>Mai</p>
+                  </div>
+                </td>
+                <td>
+                  <div class="tag-group">
+                    <span class="tag tag-outline">Tâm lý</span>
+                    <span class="tag tag-outline">Tình cảm</span>
+                  </div>
+                </td>
+                <td>131 phút</td>
+                <td>10/02/2024</td>
+                <td><span class="tag tag-default">Đã chiếu</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button
+                      class="btn-icon edit"
+                      onclick="openModal('modal-update-movie')"
+                    >
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button
+                      class="btn-icon delete"
+                      onclick="openModal('modal-delete-movie')"
+                    >
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row 5 -->
+              <tr>
+                <td>
+                  <img
+                    src="https://image.tmdb.org/t/p/w200/vXzWw1W9NfFq6sL7Y3T8xWQ5Im.jpg"
+                    alt="Exhuma Cover"
+                    class="cell-movie-poster"
+                  />
+                </td>
+                <td>
+                  <div class="cell-movie-details">
+                    <h4>Exhuma</h4>
+                    <p>Quật Mộ Trùng Ma</p>
+                  </div>
+                </td>
+                <td>
+                  <div class="tag-group">
+                    <span class="tag tag-outline">Kinh dị</span>
+                    <span class="tag tag-outline">Bí ẩn</span>
+                  </div>
+                </td>
+                <td>134 phút</td>
+                <td>15/03/2024</td>
+                <td><span class="tag tag-success">Đang chiếu</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button
+                      class="btn-icon edit"
+                      onclick="openModal('modal-update-movie')"
+                    >
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button
+                      class="btn-icon delete"
+                      onclick="openModal('modal-delete-movie')"
+                    >
+                      <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="admin-panel-footer">
+          <div class="pagination-info">
+            Hiển thị <strong>1-5</strong> trên <strong>24</strong> phim
+          </div>
+          <div class="pagination-controls">
+            <button class="page-btn" disabled>
+              <i class="fa-solid fa-angle-left"></i>
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">...</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn">
+              <i class="fa-solid fa-angle-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast-container"></div>
+    <!-- MODALS -->
+
+    <!-- Add Movie Modal -->
+    <div class="modal-overlay" id="modal-add-movie">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 class="modal-title">Thêm Phim Mới</h3>
+          <button class="btn-close" onclick="closeModal('modal-add-movie')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label required">Tên phim</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nhập tên phim"
+                />
+              </div>
+              <div class="form-group" style="grid-column: span 1"></div>
+              <!-- Offset grid if needed based on design, ah right side has the loai -->
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label required">Thể loại</label>
+                <select class="form-control">
+                  <option>Chọn thể loại</option>
+                  <option>Hành động</option>
+                  <option>Viễn tưởng</option>
+                  <option>Kinh dị</option>
+                  <option>Tình cảm</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label required">Thời lượng (phút)</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Ví dụ: 120"
+                />
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label required">Ngày khởi chiếu</label>
+                <div class="input-with-icon">
+                  <input type="date" class="form-control" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Trạng thái</label>
+                <select class="form-control">
+                  <option>Đang chiếu</option>
+                  <option>Sắp chiếu</option>
+                  <option>Đã chiếu</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label required">Giá vé</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nhập giá vé..."
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">URL Ảnh bìa</label>
+              <div style="display: flex; gap: 12px">
+                <div class="input-with-icon" style="flex: 1">
+                  <i
+                    class="fa-solid fa-link"
+                    style="left: 16px; right: auto"
+                  ></i>
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="padding-left: 44px; padding-right: 16px"
+                    placeholder="https://example.com/poster.jpg"
+                  />
+                </div>
+                <button type="button" class="btn-modal btn-modal-cancel">
+                  Tải Ảnh
+                </button>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom: 0">
+              <label class="form-label">Mô tả ngắn</label>
+              <textarea
+                class="form-control"
+                placeholder="Nhập tóm tắt nội dung phim..."
+              ></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn-modal btn-modal-cancel"
+            onclick="closeModal('modal-add-movie')"
+          >
+            Hủy
+          </button>
+          <button class="btn-modal btn-modal-primary">
+            <i class="fa-solid fa-plus"></i> Thêm mới
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Movie Modal -->
+    <div class="modal-overlay" id="modal-update-movie">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 class="modal-title">Cập Nhật Thông Tin Phim</h3>
+          <button class="btn-close" onclick="closeModal('modal-update-movie')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Tên phim</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  value="Dune: Hành Tinh Cát - Phần 2"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Thể loại</label>
+                <select class="form-control">
+                  <option>Hành động, Viễn tưởng</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Thời lượng (phút)</label>
+                <input type="number" class="form-control" value="166" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ngày khởi chiếu</label>
+                <div class="input-with-icon">
+                  <!-- In reality input date format is yyyy-mm-dd but mockup shows text -->
+                  <input type="text" class="form-control" value="03/01/2024" />
+                  <i class="fa-regular fa-calendar"></i>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mô tả ngắn</label>
+              <textarea class="form-control">
+Tiếp nối câu chuyện của phần trước, Paul Atreides (Timothée Chalamet) hợp nhất với người Fremen để trả thù những kẻ đã hủy diệt gia tộc anh. Đứng giữa sự lựa chọn về tình yêu và số phận vũ trụ, Paul phải ngăn chặn một tương lai tồi tệ mà chỉ mình anh nhìn thấy.</textarea
+              >
+            </div>
+            <div class="form-group">
+              <label class="form-label">URL Ảnh bìa</label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-link" style="left: 16px; right: auto"></i>
+                <input
+                  type="text"
+                  class="form-control"
+                  style="padding-left: 44px; padding-right: 16px"
+                  value="https://example.com/images/dune-2-poster.jpg"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Trạng thái</label>
+              <select class="form-control">
+                <option>Đang chiếu</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0">
+              <label class="form-label">Giá vé</label>
+              <input type="text" class="form-control" value="90.000 VNĐ" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn-modal btn-modal-cancel"
+            onclick="closeModal('modal-update-movie')"
+          >
+            Hủy
+          </button>
+          <button class="btn-modal btn-modal-primary">
+            <i class="fa-regular fa-floppy-disk"></i> Cập nhật
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Confirm Modal -->
+    <div class="modal-overlay" id="modal-delete-movie">
+      <div class="modal-container size-sm">
+        <div class="modal-body" style="padding: 32px 24px">
+          <div class="modal-confirm-icon">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <h3
+            class="modal-title"
+            style="text-align: center; margin-bottom: 16px"
+          >
+            Xác nhận xóa phim
+          </h3>
+          <p class="modal-confirm-text">
+            Bạn có chắc chắn muốn xóa phim
+            <strong>"Dune: Hành Tinh Cát"</strong> không? Hành động này không
+            thể hoàn tác.
+          </p>
+          <div style="display: flex; gap: 16px; justify-content: center">
+            <button
+              class="btn-modal btn-modal-cancel"
+              onclick="closeModal('modal-delete-movie')"
+            >
+              Hủy
+            </button>
+            <button class="btn-modal btn-modal-primary">Xóa ngay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="../scripts/pages/adminPage.js"></script>
+    <script>
+      window.openModal = function (id) {
+        document.getElementById(id).classList.add("active");
+      };
+      window.closeModal = function (id) {
+        document.getElementById(id).classList.remove("active");
+      };
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("modal-overlay")) {
+          event.target.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
+</html>
