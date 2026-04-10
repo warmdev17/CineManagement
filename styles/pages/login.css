@@ -105,11 +105,13 @@ header {
 
 .login-image {
   width: 100%;
-  height: 160px;
+  height: 120px;
   background-color: var(--black);
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: flex-start;
+  overflow: hidden;
   position: relative;
 }
 
@@ -119,20 +121,23 @@ header {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 20px;
   background: linear-gradient(
     to bottom,
     rgba(20, 20, 20, 0),
     var(--bg-card) 100%
   );
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(2px);
   pointer-events: none;
 }
 
 .login-image img {
-  height: 100%;
   width: 100%;
   max-width: 100%;
   display: block;
+  position: absolute;
+  top: 0;
   object-fit: cover;
   transform: scale(1);
 }
