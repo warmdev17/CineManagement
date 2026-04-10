@@ -2,6 +2,7 @@ import { showToast } from "../ui/toast.js";
 import { getCurrentUser } from "../services/authService.js";
 import { $ } from "../utils/dom.js";
 import { handleLogout } from "../controllers/logoutController.js";
+import { routes } from "../config/constants.js";
 
 const btnHeader = $(".btn-header");
 const toastData = sessionStorage.getItem("toast");
@@ -20,6 +21,6 @@ if (currentUser) {
 } else {
   btnHeader.textContent = "Đăng nhập / Đăng ký";
   btnHeader.onclick = () => {
-    window.location.href = "./pages/login.html";
+    window.location.href = routes.login;
   };
 }
