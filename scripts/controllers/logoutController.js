@@ -1,4 +1,4 @@
-import { routes } from "../config/constrants.js";
+import { routes } from "../config/constants.js";
 import { logout } from "../services/authService.js";
 import { showModal } from "../ui/modal.js";
 
