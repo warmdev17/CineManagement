@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="../styles/pages/register.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <title>Đăng Ký</title>
+  </head>
+
+  <body>
+    <!-- Full page background image -->
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+
+    <header class="header">
+      <div class="logo-header">
+        <i class="fa-solid fa-clapperboard"></i>
+        <a href="./login.html" class="logo-header-text"
+          >Rikkei <span>Cinema</span></a
+        >
+      </div>
+
+      <nav class="navbar-header">
+        <a href="#" class="navbar-item">Trang Chủ</a>
+        <a href="#" class="navbar-item">Thông Tin</a>
+        <a href="#" class="navbar-item">Liên Hệ</a>
+        <a href="./login.html" class="nav-btn-login">Đăng Nhập</a>
+      </nav>
+    </header>
+
+    <main class="register-wrapper">
+      <form class="register-card" id="register-form" novalidate>
+        <div class="register-header">
+          <h2 class="register-title">Tạo tài khoản mới</h2>
+          <p class="register-subtitle">
+            Đăng ký để đặt vé xem phim ngay hôm nay
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="register-fullname">Họ và tên</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="registerFullname"
+              name="fullname"
+              placeholder="Nguyễn Văn A"
+            />
+            <small class="error-message"></small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="registerEmail">Email</label>
+          <div class="input-wrapper">
+            <input
+              type="email"
+              name="email"
+              id="registerEmail"
+              placeholder="email@example.com"
+            />
+            <small class="error-message"></small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="registerPassword">Mật khẩu</label>
+          <div class="input-wrapper">
+            <input
+              type="password"
+              name="password"
+              id="registerPassword"
+              placeholder="******"
+            />
+            <i class="fa-regular fa-eye-slash"></i>
+            <small class="error-message"></small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Xác nhận mật khẩu</label>
+          <div class="input-wrapper">
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirm-password"
+              placeholder="******"
+            />
+            <i class="fa-regular fa-eye-slash"></i>
+            <small class="error-message"></small>
+          </div>
+        </div>
+
+        <label class="terms-agreement">
+          <input type="checkbox" id="agree-terms" name="checkbox" />
+          <span class="terms-text"
+            >Tôi đồng ý với
+            <a href="#" class="terms-link">điều khoản sử dụng</a> và chính sách
+            bảo mật của CineEdu.</span
+          >
+          <small class="error-message"></small>
+        </label>
+
+        <button type="submit" class="register-btn" id="register-btn">
+          Đăng ký <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <p class="login-text">
+          Đã có tài khoản? <a href="./login.html">Đăng nhập ngay</a>
+        </p>
+      </form>
+    </main>
+
+    <footer class="footer-simple">
+      <p>© 2026 RikkeiEdu. Tất cả quyền được bảo mật.</p>
+    </footer>
+
+    <script type="module" src="../scripts/pages/registerPage.js"></script>
+    <div id="toast-container"></div>
+  </body>
+</html>
