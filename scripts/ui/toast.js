@@ -6,10 +6,14 @@ export const showToast = (type, title, message) => {
   const toast = document.createElement("div");
   toast.className = `toast ${type}`;
 
-  toast.innerHTML = `
-    <strong>${title}</strong>
-    <p>${message}</p>
-  `;
+  const strong = document.createElement("strong");
+  strong.textContent = title;
+
+  const p = document.createElement("p");
+  p.textContent = message;
+
+  toast.appendChild(strong);
+  toast.appendChild(p);
 
   container.appendChild(toast);
 
