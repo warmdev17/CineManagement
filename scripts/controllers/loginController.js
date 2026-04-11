@@ -1,9 +1,5 @@
 import { login, setCurrentUser } from "../services/authService.js";
-import {
-  validateEmail,
-  validateName,
-  validatePassword,
-} from "../utils/validators.js";
+import { validateEmail, validatePassword } from "../utils/validators.js";
 import { clearError, showError, attachClearError } from "../ui/formError.js";
 import { routes } from "../config/constants.js";
 
