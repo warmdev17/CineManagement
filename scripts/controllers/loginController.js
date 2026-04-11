@@ -1,5 +1,9 @@
 import { login, setCurrentUser } from "../services/authService.js";
-import { validateEmail, validatePassword } from "../utils/validators.js";
+import {
+  validateEmail,
+  validateName,
+  validatePassword,
+} from "../utils/validators.js";
 import { clearError, showError, attachClearError } from "../ui/formError.js";
 import { routes } from "../config/constants.js";
 
@@ -14,21 +18,25 @@ export const handleLogin = (e) => {
     attachClearError(input);
   });
 
-  let hasError = false;
+  const errors = [
+    validateEmail(email.value),
+    validatePassword(password.value),
+  ].filter(Boolean);
 
-  const emailErr = validateEmail(email.value);
-  if (emailErr) {
-    showError(email, emailErr.message);
-    hasError = true;
+  if (errors.length > 0) {
+    const fieldMap = {
+      email,
+      password,
+    };
+
+    errors.forEach((err) => {
+      showError(fieldMap[err.field], err.message);
+    });
+
+    fieldMap[errors[0].field].focus();
+
+    return;
   }
-
-  const passwordErr = validatePassword(password.value);
-  if (passwordErr) {
-    showError(password, passwordErr.message);
-    hasError = true;
-  }
-
-  if (hasError) return;
 
   const result = login({ email: email.value, password: password.value });
 

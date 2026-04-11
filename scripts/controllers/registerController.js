@@ -24,31 +24,28 @@ export const handleRegister = (e) => {
 
   let hasError = false;
 
-  const fullNameErr = validateName(fullname.value);
-  if (fullNameErr) {
-    showError(fullname, fullNameErr.message);
-    hasError = true;
-  }
+  const errors = [
+    validateName(fullname.value),
+    validateEmail(email.value),
+    validatePassword(password.value, true),
+    validateConfirmPassword(confirmPassword.value, password.value),
+  ].filter(Boolean);
 
-  const emailErr = validateEmail(email.value);
-  if (emailErr) {
-    showError(email, emailErr.message);
-    hasError = true;
-  }
+  if (errors.length > 0) {
+    const fieldMap = {
+      fullname,
+      email,
+      password,
+      confirmPassword,
+    };
 
-  const passErr = validatePassword(password.value, true);
-  if (passErr) {
-    showError(password, passErr.message);
-    hasError = true;
-  }
+    errors.forEach((err) => {
+      showError(fieldMap[err.field], err.message);
+    });
 
-  const cPassErr = validateConfirmPassword(
-    confirmPassword.value,
-    password.value,
-  );
-  if (cPassErr) {
-    showError(confirmPassword, cPassErr.message);
-    hasError = true;
+    fieldMap[errors[0].field].focus();
+
+    return;
   }
 
   if (hasError) return;
