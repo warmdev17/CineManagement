@@ -2,16 +2,20 @@ const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const passwordRegex = /[!@#$%^&*(),.?":{}|<>]/;
 
 export const validateEmail = (email) => {
-  if (!email)
+  if (!email) {
     return {
       field: "email",
       message: "Email không được để trống",
     };
-  if (!emailRegex.test(email))
+  }
+  if (!emailRegex.test(email)) {
     return {
       field: "email",
-      message: "Email không không hợp lệ",
+      message: "Email không hợp lệ",
     };
+  }
+
+  return null;
 };
 
 export const validatePassword = (password, register) => {
@@ -35,15 +39,26 @@ export const validatePassword = (password, register) => {
       };
     }
   }
+
+  return null;
 };
 
 export const validateConfirmPassword = (cPass, pass) => {
+  if (!cPass) {
+    return {
+      field: "confirmPassword",
+      message: "Vui lòng nhập lại mật khẩu",
+    };
+  }
+
   if (cPass !== pass) {
     return {
       field: "confirmPassword",
       message: "Mật khẩu xác nhận không khớp",
     };
   }
+
+  return null;
 };
 export const validateName = (fullname) => {
   if (!fullname) {
@@ -65,7 +80,7 @@ export const validateName = (fullname) => {
     };
   }
 
-  const words = fullname.split(" ");
+  const words = fullname.trim().split(/\s+/);
   for (const word of words) {
     if (!/^[A-ZÀ-Ỹ]/.test(word)) {
       return {
@@ -74,4 +89,6 @@ export const validateName = (fullname) => {
       };
     }
   }
+
+  return null;
 };
