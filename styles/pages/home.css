@@ -210,6 +210,7 @@ main {
   padding: 16px;
   border-radius: 8px;
   transition: transform 0.3s ease;
+  min-width: 0;
 }
 .movie-card:hover {
   transform: translateY(-5px);
@@ -231,6 +232,7 @@ main {
 }
 .movie-info {
   padding: 16px 0 0 0;
+  min-width: 0;
 }
 .movie-title {
   font-size: 18px;
@@ -243,11 +245,19 @@ main {
 .movie-meta {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 8px;
   font-size: 13px;
   color: var(--home-text-muted);
   margin-bottom: 20px;
+}
+.movie-meta span:not(.movie-genre) {
+  flex-shrink: 0;
+}
+.movie-genre {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 .movie-dot {
   color: var(--border-checkbox);
