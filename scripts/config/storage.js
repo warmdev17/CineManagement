@@ -8,7 +8,8 @@ const sampleMovies = [
     duration: 166,
     releaseDate: "01/03/2024",
     status: 1,
-    posterUrl: "https://example.com/images/dune-part-two-poster.jpg",
+    posterUrl:
+      "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
     description:
       "Tiếp nối phần trước, Paul Atreides hợp nhất với Fremen để trả thù gia tộc Harkonnen và đối mặt với số phận của vũ trụ.",
     ticketPrice: 95000,
@@ -21,7 +22,8 @@ const sampleMovies = [
     duration: 94,
     releaseDate: "08/03/2024",
     status: 1,
-    posterUrl: "https://example.com/images/kung-fu-panda-4-poster.jpg",
+    posterUrl:
+      "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
     description:
       "Po tiếp tục hành trình trở thành Chiến binh Rồng, đối mặt với kẻ thù mới và tìm người kế nhiệm.",
     ticketPrice: 80000,
@@ -34,7 +36,8 @@ const sampleMovies = [
     duration: 115,
     releaseDate: "29/03/2024",
     status: 2,
-    posterUrl: "https://example.com/images/godzilla-x-kong-poster.jpg",
+    posterUrl:
+      "https://play-lh.googleusercontent.com/XRG6cGKBbsUgFqTYeOkO-M4ihIBnJ8R0tkPb6SGtTE-uvFKFUw4Gd1qRVXNoRwBp90tClgTn8ChcXkipxdbH",
     description:
       "Godzilla và Kong hợp sức chống lại mối đe dọa mới từ lòng đất.",
     ticketPrice: 80000,
@@ -47,7 +50,8 @@ const sampleMovies = [
     duration: 131,
     releaseDate: "10/02/2024",
     status: 0,
-    posterUrl: "https://example.com/images/mai-poster.jpg",
+    posterUrl:
+      "https://image.tmdb.org/t/p/w500/8c4a8kE7PizaGQQnditMmI1xbRp.jpg",
     description:
       "Câu chuyện về một người phụ nữ mạnh mẽ đối mặt với những biến cố trong cuộc sống.",
     ticketPrice: 80000,
