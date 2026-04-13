@@ -1,5 +1,5 @@
 import { routes } from "../config/constants.js";
-import { users } from "../config/storage.js";
+import { getAllUsers } from "../repositories/userRepository.js";
 import { register } from "../services/authService.js";
 import { clearError, showError, attachClearError } from "../ui/formError.js";
 import {
@@ -21,8 +21,6 @@ export const handleRegister = (e) => {
     clearError(input);
     attachClearError(input);
   });
-
-  let hasError = false;
 
   const errors = [
     validateName(fullname.value),
@@ -48,8 +46,6 @@ export const handleRegister = (e) => {
     return;
   }
 
-  if (hasError) return;
-
   const result = register({
     fullName: fullname.value,
     email: email.value,
@@ -62,6 +58,7 @@ export const handleRegister = (e) => {
     return;
   }
 
+  const users = getAllUsers();
   users.push(result.regUser);
   localStorage.setItem("users", JSON.stringify(users));
 
