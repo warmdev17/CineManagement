@@ -3,8 +3,12 @@ import * as userRepository from "../repositories/userRepository.js";
 export const isAuthenticated = () => {
   return !!localStorage.getItem("currentUser");
 };
-export const setCurrentUser = (user) => {
-  localStorage.setItem("currentUser", JSON.stringify(user));
+export const setCurrentUser = (user, remember) => {
+  if (remember) {
+    localStorage.setItem("currentUser", JSON.stringify(user));
+  } else {
+    sessionStorage.setItem("currentUser", JSON.stringify(user));
+  }
 };
 
 export const getCurrentUser = () => {
