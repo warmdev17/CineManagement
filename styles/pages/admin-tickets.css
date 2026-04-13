@@ -86,7 +86,7 @@
 }
 
 /* Ticket specific cell styles */
-.ticket-customer-info h4 {
+.ticket-customer-info .customer-name {
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 4px;
