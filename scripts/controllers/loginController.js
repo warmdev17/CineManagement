@@ -8,6 +8,7 @@ export const handleLogin = (e) => {
 
   const email = e.target.email;
   const password = e.target.password;
+  const remember = e.target.remember;
 
   [email, password].forEach((input) => {
     clearError(input);
@@ -41,7 +42,9 @@ export const handleLogin = (e) => {
     return;
   }
 
-  setCurrentUser(result.user);
+  if (remember.checked) {
+    setCurrentUser(result.user);
+  }
   sessionStorage.setItem(
     "toast",
     JSON.stringify({
