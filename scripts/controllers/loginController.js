@@ -42,9 +42,7 @@ export const handleLogin = (e) => {
     return;
   }
 
-  if (remember.checked) {
-    setCurrentUser(result.user);
-  }
+  setCurrentUser(result.user, remember.checked);
   sessionStorage.setItem(
     "toast",
     JSON.stringify({
