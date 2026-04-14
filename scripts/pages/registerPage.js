@@ -10,4 +10,11 @@ if (toastData) {
 }
 
 const registerForm = $("#register-form");
+const agreeTermsCheckbox = $("#agree-terms");
+const registerBtn = $("#register-btn");
+
+agreeTermsCheckbox.addEventListener("change", (e) => {
+  registerBtn.disabled = !e.target.checked;
+});
+
 registerForm.addEventListener("submit", handleRegister);
