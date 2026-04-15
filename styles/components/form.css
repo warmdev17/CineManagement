@@ -117,3 +117,15 @@ select.form-control {
   transform: translateY(-50%);
   color: var(--admin-text-muted);
 }
+
+/* Hide spin buttons for number inputs */
+.form-control[type="number"]::-webkit-outer-spin-button,
+.form-control[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-control[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+  appearance: textfield;
+}
