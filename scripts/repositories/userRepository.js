@@ -17,3 +17,8 @@ export const nextUserId = () => {
   const users = getAllUsers();
   return Math.max(...users.map((u) => u.id), 0) + 1;
 };
+
+export const isEmailRegisterd = (email) => {
+  const users = getAllUsers();
+  return users.some((u) => u.email === email);
+};

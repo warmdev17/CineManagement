@@ -12,7 +12,9 @@ export const setCurrentUser = (user, remember) => {
 };
 
 export const getCurrentUser = () => {
-  const user = localStorage.getItem("currentUser");
+  const user =
+    localStorage.getItem("currentUser") ||
+    sessionStorage.getItem("currentUser");
   return user ? JSON.parse(user) : null;
 };
 
@@ -38,7 +40,7 @@ export const login = ({ email, password }) => {
 };
 
 export const register = ({ fullName, email, password, confirmPassword }) => {
-  const user = userRepository.findUserByEmail(email);
+  const user = userRepository.isEmailRegisterd(email);
 
   if (user) {
     return {
